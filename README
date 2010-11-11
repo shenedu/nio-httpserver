@@ -1,1 +1,5 @@
-a simple java nio based httpserver
+##a simple java nio based httpserver
+
+**how to run:**
+1. mvn package
+2. ./script/run.sh
