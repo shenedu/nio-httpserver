@@ -1,5 +1,6 @@
 package com.butterfly.nioserver;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -25,13 +26,14 @@ public class NioHttpServer implements Runnable {
 
 	public static void main(String[] args) throws IOException {
 
-		String root = "D:/software/apache-tomcat-6.0.26/webapps/docs";
-		int port = 80;
-		if (args.length == 2) {
-			System.out.println(args[0] + "\t" + args[1]);
-			root = args[0];
-			port = Integer.parseInt(args[1]);
-		}
+	    String root = new File(".").getAbsolutePath();
+        int port = 8080;
+        if (args.length > 0)
+            port = Integer.parseInt(args[0]);
+
+        if (args.length > 1)
+            root = args[1];
+        System.out.println(port+"\t"+root);
 		NioHttpServer server = new NioHttpServer(null, port);
 		int cpu = Runtime.getRuntime().availableProcessors();
 		ButterflySoftCache cache = new ButterflySoftCache();
